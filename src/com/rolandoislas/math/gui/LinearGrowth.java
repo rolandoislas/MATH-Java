@@ -3,6 +3,7 @@
  */
 package com.rolandoislas.math.gui;
 
+import java.awt.Color;
 import java.awt.Container;
 
 import javax.swing.JFrame;
@@ -21,7 +22,6 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.event.CaretListener;
 import javax.swing.event.CaretEvent;
-import java.awt.SystemColor;
 
 /**
  * @author Rolando Islas
@@ -125,7 +125,7 @@ public class LinearGrowth extends JPanel implements ApplicationState {
 		add(lblIntervalResult);
 		
 		tfCommonDifferenceResult = new JTextField("null");
-		tfCommonDifferenceResult.setBackground(SystemColor.window);
+		tfCommonDifferenceResult.setBackground(new Color(238, 238, 238));
 		springLayout.putConstraint(SpringLayout.NORTH, tfCommonDifferenceResult, 0, SpringLayout.NORTH, lblCommonDifferenceResult);
 		springLayout.putConstraint(SpringLayout.WEST, tfCommonDifferenceResult, 0, SpringLayout.WEST, tfInitialPopulation);
 		springLayout.putConstraint(SpringLayout.EAST, tfCommonDifferenceResult, 166, SpringLayout.WEST, tfInitialPopulation);
@@ -135,7 +135,7 @@ public class LinearGrowth extends JPanel implements ApplicationState {
 		tfCommonDifferenceResult.setColumns(10);
 		
 		tfIntervalResult = new JTextField("null");
-		tfIntervalResult.setBackground(SystemColor.window);
+		tfIntervalResult.setBackground(new Color(238, 238, 238));
 		springLayout.putConstraint(SpringLayout.NORTH, tfIntervalResult, 0, SpringLayout.NORTH, lblIntervalResult);
 		springLayout.putConstraint(SpringLayout.WEST, tfIntervalResult, 0, SpringLayout.WEST, tfInitialPopulation);
 		springLayout.putConstraint(SpringLayout.EAST, tfIntervalResult, 0, SpringLayout.EAST, tfCommonDifferenceResult);
@@ -161,7 +161,7 @@ public class LinearGrowth extends JPanel implements ApplicationState {
 		tfIntervalValue.setColumns(10);
 		
 		tfInitialPopulationResult = new JTextField();
-		tfInitialPopulationResult.setBackground(SystemColor.window);
+		tfInitialPopulationResult.setBackground(new Color(238, 238, 238));
 		springLayout.putConstraint(SpringLayout.WEST, tfInitialPopulationResult, 0, SpringLayout.WEST, tfInitialPopulation);
 		springLayout.putConstraint(SpringLayout.SOUTH, tfInitialPopulationResult, -7, SpringLayout.NORTH, tfCommonDifferenceResult);
 		springLayout.putConstraint(SpringLayout.EAST, tfInitialPopulationResult, 0, SpringLayout.EAST, tfCommonDifferenceResult);

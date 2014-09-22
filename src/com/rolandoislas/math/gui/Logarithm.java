@@ -3,6 +3,7 @@
  */
 package com.rolandoislas.math.gui;
 
+import java.awt.Color;
 import java.awt.Container;
 
 import javax.swing.JFrame;
@@ -21,7 +22,6 @@ import java.math.BigDecimal;
 import javax.swing.JTextField;
 import javax.swing.event.CaretListener;
 import javax.swing.event.CaretEvent;
-import java.awt.SystemColor;
 
 /**
  * @author Rolando Islas
@@ -110,7 +110,7 @@ public class Logarithm extends JPanel implements ApplicationState {
 		add(lblExponent);
 		
 		tfNoExponentResult = new JTextField();
-		tfNoExponentResult.setBackground(SystemColor.window);
+		tfNoExponentResult.setBackground(new Color(238, 238, 238));
 		springLayout.putConstraint(SpringLayout.WEST, tfNoExponentResult, 0, SpringLayout.WEST, tfNoExponent);
 		springLayout.putConstraint(SpringLayout.EAST, tfNoExponentResult, 200, SpringLayout.WEST, tfNoExponent);
 		tfNoExponentResult.setBorder(null);
@@ -120,7 +120,7 @@ public class Logarithm extends JPanel implements ApplicationState {
 		tfNoExponentResult.setColumns(10);
 		
 		tfBaseResult = new JTextField();
-		tfBaseResult.setBackground(SystemColor.window);
+		tfBaseResult.setBackground(new Color(238, 238, 238));
 		springLayout.putConstraint(SpringLayout.WEST, tfBaseResult, 0, SpringLayout.WEST, tfNoExponent);
 		springLayout.putConstraint(SpringLayout.SOUTH, tfBaseResult, -6, SpringLayout.NORTH, tfNoExponentResult);
 		springLayout.putConstraint(SpringLayout.EAST, tfBaseResult, -71, SpringLayout.EAST, this);
@@ -131,7 +131,7 @@ public class Logarithm extends JPanel implements ApplicationState {
 		tfBaseResult.setColumns(10);
 		
 		tfExponentResult = new JTextField();
-		tfExponentResult.setBackground(SystemColor.window);
+		tfExponentResult.setBackground(new Color(238, 238, 238));
 		springLayout.putConstraint(SpringLayout.NORTH, tfExponentResult, 228, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.WEST, tfExponentResult, 179, SpringLayout.WEST, this);
 		springLayout.putConstraint(SpringLayout.EAST, tfExponentResult, -71, SpringLayout.EAST, this);
