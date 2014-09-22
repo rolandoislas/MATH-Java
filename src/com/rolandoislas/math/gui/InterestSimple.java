@@ -21,6 +21,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.event.CaretListener;
 import javax.swing.event.CaretEvent;
+import java.awt.SystemColor;
 
 /**
  * @author Rolando Islas
@@ -129,6 +130,7 @@ public class InterestSimple extends JPanel implements ApplicationState {
 		add(lblEndAmount);
 		
 		tfPrincipalResult = new JTextField();
+		tfPrincipalResult.setBackground(SystemColor.window);
 		springLayout.putConstraint(SpringLayout.EAST, tfPrincipalResult, -69, SpringLayout.EAST, this);
 		tfPrincipalResult.setBorder(null);
 		tfPrincipalResult.setEditable(false);
@@ -137,6 +139,7 @@ public class InterestSimple extends JPanel implements ApplicationState {
 		tfPrincipalResult.setColumns(10);
 		
 		tfRateResult = new JTextField();
+		tfRateResult.setBackground(SystemColor.window);
 		springLayout.putConstraint(SpringLayout.NORTH, tfRateResult, 203, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.SOUTH, tfPrincipalResult, -3, SpringLayout.NORTH, tfRateResult);
 		springLayout.putConstraint(SpringLayout.EAST, tfRateResult, 0, SpringLayout.EAST, tfPrincipalResult);
@@ -148,6 +151,7 @@ public class InterestSimple extends JPanel implements ApplicationState {
 		tfRateResult.setColumns(10);
 		
 		tfInterestResult = new JTextField();
+		tfInterestResult.setBackground(SystemColor.window);
 		springLayout.putConstraint(SpringLayout.NORTH, tfInterestResult, 6, SpringLayout.SOUTH, tfRateResult);
 		springLayout.putConstraint(SpringLayout.WEST, tfInterestResult, 0, SpringLayout.WEST, tfPrincipal);
 		springLayout.putConstraint(SpringLayout.EAST, tfInterestResult, 0, SpringLayout.EAST, tfPrincipalResult);
@@ -158,6 +162,7 @@ public class InterestSimple extends JPanel implements ApplicationState {
 		tfInterestResult.setColumns(10);
 		
 		tfEndAmountResult = new JTextField();
+		tfEndAmountResult.setBackground(SystemColor.window);
 		springLayout.putConstraint(SpringLayout.WEST, tfEndAmountResult, 0, SpringLayout.WEST, tfPrincipal);
 		springLayout.putConstraint(SpringLayout.EAST, tfEndAmountResult, 0, SpringLayout.EAST, tfPrincipalResult);
 		tfEndAmountResult.setBorder(null);
@@ -204,6 +209,7 @@ public class InterestSimple extends JPanel implements ApplicationState {
 		tfTime.setColumns(10);
 		
 		tfTimeResult = new JTextField();
+		tfTimeResult.setBackground(SystemColor.window);
 		springLayout.putConstraint(SpringLayout.NORTH, tfEndAmountResult, 6, SpringLayout.SOUTH, tfTimeResult);
 		springLayout.putConstraint(SpringLayout.NORTH, tfTimeResult, 6, SpringLayout.SOUTH, tfInterestResult);
 		springLayout.putConstraint(SpringLayout.WEST, tfTimeResult, 0, SpringLayout.WEST, tfPrincipal);

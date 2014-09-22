@@ -21,6 +21,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.event.CaretListener;
 import javax.swing.event.CaretEvent;
+import java.awt.SystemColor;
 
 /**
  * @author Rolando Islas
@@ -124,6 +125,7 @@ public class LinearGrowth extends JPanel implements ApplicationState {
 		add(lblIntervalResult);
 		
 		tfCommonDifferenceResult = new JTextField("null");
+		tfCommonDifferenceResult.setBackground(SystemColor.window);
 		springLayout.putConstraint(SpringLayout.NORTH, tfCommonDifferenceResult, 0, SpringLayout.NORTH, lblCommonDifferenceResult);
 		springLayout.putConstraint(SpringLayout.WEST, tfCommonDifferenceResult, 0, SpringLayout.WEST, tfInitialPopulation);
 		springLayout.putConstraint(SpringLayout.EAST, tfCommonDifferenceResult, 166, SpringLayout.WEST, tfInitialPopulation);
@@ -133,6 +135,7 @@ public class LinearGrowth extends JPanel implements ApplicationState {
 		tfCommonDifferenceResult.setColumns(10);
 		
 		tfIntervalResult = new JTextField("null");
+		tfIntervalResult.setBackground(SystemColor.window);
 		springLayout.putConstraint(SpringLayout.NORTH, tfIntervalResult, 0, SpringLayout.NORTH, lblIntervalResult);
 		springLayout.putConstraint(SpringLayout.WEST, tfIntervalResult, 0, SpringLayout.WEST, tfInitialPopulation);
 		springLayout.putConstraint(SpringLayout.EAST, tfIntervalResult, 0, SpringLayout.EAST, tfCommonDifferenceResult);
@@ -142,22 +145,23 @@ public class LinearGrowth extends JPanel implements ApplicationState {
 		tfIntervalResult.setColumns(10);
 		
 		lblIntervalValue = new JLabel("Value:");
-		springLayout.putConstraint(SpringLayout.WEST, lblIntervalValue, 19, SpringLayout.EAST, tfInterval);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblIntervalValue, 0, SpringLayout.SOUTH, lblInterval);
+		springLayout.putConstraint(SpringLayout.NORTH, lblIntervalValue, 6, SpringLayout.NORTH, tfInterval);
 		add(lblIntervalValue);
 		
 		tfIntervalValue = new JTextField();
+		springLayout.putConstraint(SpringLayout.WEST, tfIntervalValue, 405, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.EAST, lblIntervalValue, -6, SpringLayout.WEST, tfIntervalValue);
 		tfIntervalValue.addCaretListener(new CaretListener() {
 			public void caretUpdate(CaretEvent arg0) {
 				updateData();
 			}
 		});
 		springLayout.putConstraint(SpringLayout.NORTH, tfIntervalValue, -3, SpringLayout.NORTH, lblInterval);
-		springLayout.putConstraint(SpringLayout.WEST, tfIntervalValue, 6, SpringLayout.EAST, lblIntervalValue);
 		add(tfIntervalValue);
 		tfIntervalValue.setColumns(10);
 		
 		tfInitialPopulationResult = new JTextField();
+		tfInitialPopulationResult.setBackground(SystemColor.window);
 		springLayout.putConstraint(SpringLayout.WEST, tfInitialPopulationResult, 0, SpringLayout.WEST, tfInitialPopulation);
 		springLayout.putConstraint(SpringLayout.SOUTH, tfInitialPopulationResult, -7, SpringLayout.NORTH, tfCommonDifferenceResult);
 		springLayout.putConstraint(SpringLayout.EAST, tfInitialPopulationResult, 0, SpringLayout.EAST, tfCommonDifferenceResult);

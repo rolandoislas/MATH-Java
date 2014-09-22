@@ -9,6 +9,8 @@ import java.awt.EventQueue;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
+import java.net.URL;
+
 import javax.swing.ImageIcon;
 
 import com.rolandoislas.math.data.Constants;
@@ -57,7 +59,8 @@ public class Main extends StateBasedApplication {
 			public void run() {
 				try {
 					Main window = new Main();
-					Image image = new ImageIcon(Main.class.getResource("/images/Icon512.jpg")).getImage();
+					URL test = getClass().getResource("/images/Icon512.jpg");
+					Image image = new ImageIcon(test).getImage();
 					window.frame.setIconImage(image);
 					window.frame.setVisible(true);
 				} catch (Exception e) {

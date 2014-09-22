@@ -20,6 +20,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.event.CaretListener;
 import javax.swing.event.CaretEvent;
+import java.awt.SystemColor;
 
 /**
  * @author Rolando Islas
@@ -109,6 +110,7 @@ public class ExponentialGrowth extends JPanel implements ApplicationState {
 		add(lblInterval);
 		
 		tfPrincipalResult = new JTextField();
+		tfPrincipalResult.setBackground(SystemColor.window);
 		springLayout.putConstraint(SpringLayout.WEST, tfPrincipalResult, 0, SpringLayout.WEST, tfPrincipal);
 		springLayout.putConstraint(SpringLayout.EAST, tfPrincipalResult, -62, SpringLayout.EAST, this);
 		tfPrincipalResult.setText("null");
@@ -118,6 +120,7 @@ public class ExponentialGrowth extends JPanel implements ApplicationState {
 		tfPrincipalResult.setColumns(10);
 		
 		tfRateResult = new JTextField();
+		tfRateResult.setBackground(SystemColor.window);
 		springLayout.putConstraint(SpringLayout.SOUTH, tfPrincipalResult, -6, SpringLayout.NORTH, tfRateResult);
 		springLayout.putConstraint(SpringLayout.EAST, tfRateResult, 0, SpringLayout.EAST, tfPrincipalResult);
 		springLayout.putConstraint(SpringLayout.WEST, tfRateResult, 0, SpringLayout.WEST, tfPrincipal);
@@ -128,6 +131,7 @@ public class ExponentialGrowth extends JPanel implements ApplicationState {
 		tfRateResult.setColumns(10);
 		
 		tfIntervalResult = new JTextField();
+		tfIntervalResult.setBackground(SystemColor.window);
 		springLayout.putConstraint(SpringLayout.SOUTH, tfRateResult, -6, SpringLayout.NORTH, tfIntervalResult);
 		springLayout.putConstraint(SpringLayout.EAST, tfIntervalResult, 0, SpringLayout.EAST, tfPrincipalResult);
 		springLayout.putConstraint(SpringLayout.NORTH, tfIntervalResult, 201, SpringLayout.NORTH, this);

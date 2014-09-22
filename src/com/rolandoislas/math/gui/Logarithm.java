@@ -21,6 +21,7 @@ import java.math.BigDecimal;
 import javax.swing.JTextField;
 import javax.swing.event.CaretListener;
 import javax.swing.event.CaretEvent;
+import java.awt.SystemColor;
 
 /**
  * @author Rolando Islas
@@ -109,18 +110,20 @@ public class Logarithm extends JPanel implements ApplicationState {
 		add(lblExponent);
 		
 		tfNoExponentResult = new JTextField();
+		tfNoExponentResult.setBackground(SystemColor.window);
+		springLayout.putConstraint(SpringLayout.WEST, tfNoExponentResult, 0, SpringLayout.WEST, tfNoExponent);
 		springLayout.putConstraint(SpringLayout.EAST, tfNoExponentResult, 200, SpringLayout.WEST, tfNoExponent);
 		tfNoExponentResult.setBorder(null);
 		tfNoExponentResult.setText("null");
 		tfNoExponentResult.setEditable(false);
-		springLayout.putConstraint(SpringLayout.NORTH, tfNoExponentResult, 43, SpringLayout.SOUTH, tfExponent);
-		springLayout.putConstraint(SpringLayout.WEST, tfNoExponentResult, 0, SpringLayout.WEST, tfNoExponent);
 		add(tfNoExponentResult);
 		tfNoExponentResult.setColumns(10);
 		
 		tfBaseResult = new JTextField();
+		tfBaseResult.setBackground(SystemColor.window);
 		springLayout.putConstraint(SpringLayout.WEST, tfBaseResult, 0, SpringLayout.WEST, tfNoExponent);
-		springLayout.putConstraint(SpringLayout.EAST, tfBaseResult, 0, SpringLayout.EAST, tfNoExponentResult);
+		springLayout.putConstraint(SpringLayout.SOUTH, tfBaseResult, -6, SpringLayout.NORTH, tfNoExponentResult);
+		springLayout.putConstraint(SpringLayout.EAST, tfBaseResult, -71, SpringLayout.EAST, this);
 		tfBaseResult.setText("null");
 		tfBaseResult.setEditable(false);
 		tfBaseResult.setBorder(null);
@@ -128,28 +131,29 @@ public class Logarithm extends JPanel implements ApplicationState {
 		tfBaseResult.setColumns(10);
 		
 		tfExponentResult = new JTextField();
-		springLayout.putConstraint(SpringLayout.SOUTH, tfBaseResult, -6, SpringLayout.NORTH, tfExponentResult);
-		springLayout.putConstraint(SpringLayout.NORTH, tfExponentResult, 207, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.EAST, tfExponentResult, 0, SpringLayout.EAST, tfNoExponentResult);
+		tfExponentResult.setBackground(SystemColor.window);
+		springLayout.putConstraint(SpringLayout.NORTH, tfExponentResult, 228, SpringLayout.NORTH, this);
+		springLayout.putConstraint(SpringLayout.WEST, tfExponentResult, 179, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.EAST, tfExponentResult, -71, SpringLayout.EAST, this);
+		springLayout.putConstraint(SpringLayout.SOUTH, tfNoExponentResult, -6, SpringLayout.NORTH, tfExponentResult);
 		tfExponentResult.setText("null");
 		tfExponentResult.setEditable(false);
 		tfExponentResult.setBorder(null);
-		springLayout.putConstraint(SpringLayout.WEST, tfExponentResult, 0, SpringLayout.WEST, tfNoExponent);
 		add(tfExponentResult);
 		tfExponentResult.setColumns(10);
 		
 		JLabel lblNoExponentResult = new JLabel("Exponentless  side:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblNoExponentResult, 0, SpringLayout.NORTH, tfNoExponentResult);
+		springLayout.putConstraint(SpringLayout.NORTH, lblNoExponentResult, 0, SpringLayout.NORTH, tfBaseResult);
 		springLayout.putConstraint(SpringLayout.EAST, lblNoExponentResult, 0, SpringLayout.EAST, lblNoExponent);
 		add(lblNoExponentResult);
 		
 		JLabel lblBaseResult = new JLabel("Base:");
+		springLayout.putConstraint(SpringLayout.NORTH, lblBaseResult, 0, SpringLayout.NORTH, tfNoExponentResult);
 		springLayout.putConstraint(SpringLayout.EAST, lblBaseResult, 0, SpringLayout.EAST, lblNoExponent);
 		add(lblBaseResult);
 		
 		JLabel lblExponentResult = new JLabel("Exponent:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblExponentResult, 207, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblBaseResult, -6, SpringLayout.NORTH, lblExponentResult);
+		springLayout.putConstraint(SpringLayout.NORTH, lblExponentResult, 0, SpringLayout.NORTH, tfExponentResult);
 		springLayout.putConstraint(SpringLayout.EAST, lblExponentResult, 0, SpringLayout.EAST, lblNoExponent);
 		add(lblExponentResult);
 	}
