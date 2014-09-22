@@ -1,0 +1,11 @@
+# Ignore everything
+/*/
+/*
+
+# Unignore this
+!src/
+!.gitignore
+!resources/
+
+#Ignore constants
+src/com/rolandoislas/hudinstaller/data/Constants.java
