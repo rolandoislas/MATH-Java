@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 
 import com.rolandoislas.math.data.Constants;
 import com.rolandoislas.math.gui.ExponentialGrowth;
+import com.rolandoislas.math.gui.InterestCompound;
 import com.rolandoislas.math.gui.InterestSimple;
 import com.rolandoislas.math.gui.LinearGrowth;
 import com.rolandoislas.math.gui.List;
@@ -76,5 +77,6 @@ public class Main extends StateBasedApplication {
 		addState(new ExponentialGrowth());
 		addState(new Logarithm());
 		addState(new InterestSimple());
+		addState(new InterestCompound());
 	}
 }
