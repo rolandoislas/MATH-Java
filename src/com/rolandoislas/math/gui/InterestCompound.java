@@ -20,7 +20,7 @@ public class InterestCompound implements ApplicationState {
 	private static final int ID = 5;
 	private static final String DISPLAY_NAME = "Compound Interest";
 	private static final int INPUT_FIELDS = 5;
-	private static final int OUTPUT_FIELDS = 4;
+	private static final int OUTPUT_FIELDS = 5;
 	private SolveVariable icPanel;
 	
 	public InterestCompound() {
@@ -50,7 +50,7 @@ public class InterestCompound implements ApplicationState {
 	 * 
 	 */
 	private void setFieldEvents() {
-		for(int i = 0; i < 5; i++) {
+		for(int i = 0; i < INPUT_FIELDS; i++) {
 			icPanel.getField(i).addCaretListener(new CaretListener() {
 				public void caretUpdate(CaretEvent e) {
 					doFieldComputations();
@@ -77,7 +77,9 @@ public class InterestCompound implements ApplicationState {
 	private void calculateFinalBalance() {
 		if(icPanel.isFieldPopulated(0) && icPanel.isFieldPopulated(1) && icPanel.isFieldPopulated(2) && icPanel.isFieldPopulated(3)) {
 			double finalBalance = icPanel.getFieldText(0) * Math.pow((1 + icPanel.getFieldText(1) / icPanel.getFieldText(3)), icPanel.getFieldText(2) * icPanel.getFieldText(3));
-			icPanel.setFieldText(8, (float)finalBalance);
+			double interest = finalBalance - icPanel.getFieldText(0);
+			icPanel.setFieldText(8, (float)interest);
+			icPanel.setFieldText(9, (float)finalBalance);
 		}
 	}
 
@@ -99,6 +101,8 @@ public class InterestCompound implements ApplicationState {
 	private void calculateRate() {
 		if(icPanel.isFieldPopulated(0) && icPanel.isFieldPopulated(2) && icPanel.isFieldPopulated(3) && icPanel.isFieldPopulated(4)) {
 			double rate = (Math.pow((icPanel.getFieldText(4) / icPanel.getFieldText(0)), 1 / (icPanel.getFieldText(2) * icPanel.getFieldText(3))) - 1) * icPanel.getFieldText(3);
+			double interest = icPanel.getFieldText(4) - icPanel.getFieldText(0);
+			icPanel.setFieldText(8, (float)interest);
 			icPanel.setFieldText(6, (float)rate);
 		}
 	}
@@ -109,6 +113,8 @@ public class InterestCompound implements ApplicationState {
 	private void calculateYears() {
 		if(icPanel.isFieldPopulated(0) && icPanel.isFieldPopulated(1) && icPanel.isFieldPopulated(3) && icPanel.isFieldPopulated(4)) {
 			double years = Math.log10(icPanel.getFieldText(4) / icPanel.getFieldText(0)) / (Math.log10(1 + icPanel.getFieldText(1) / icPanel.getFieldText(3)) * icPanel.getFieldText(3));
+			double interest = icPanel.getFieldText(4) - icPanel.getFieldText(0);
+			icPanel.setFieldText(8, (float)interest);
 			icPanel.setFieldText(7, (float)years);
 		}
 	}
@@ -128,6 +134,8 @@ public class InterestCompound implements ApplicationState {
 	private void calculatePrincipal() {
 		if(icPanel.isFieldPopulated(1) && icPanel.isFieldPopulated(2) && icPanel.isFieldPopulated(3) && icPanel.isFieldPopulated(4)) {
 			double principal = icPanel.getFieldText(4) / (Math.pow((1 + icPanel.getFieldText(1) / icPanel.getFieldText(3)), icPanel.getFieldText(2) * icPanel.getFieldText(3)));
+			double interest = icPanel.getFieldText(4) - principal;
+			icPanel.setFieldText(8, (float)interest);
 			icPanel.setFieldText(5, (float)principal);
 		}
 	}
@@ -146,8 +154,8 @@ public class InterestCompound implements ApplicationState {
 		icPanel.setLabelText(5, "Principal");
 		icPanel.setLabelText(6, "Rate");
 		icPanel.setLabelText(7, "Years");
-		//icPanel.setLabelText(8, "Period");
-		icPanel.setLabelText(8, "Final Balance");
+		icPanel.setLabelText(8, "Interest");
+		icPanel.setLabelText(9, "Final Balance");
 	}
 
 	/* (non-Javadoc)
