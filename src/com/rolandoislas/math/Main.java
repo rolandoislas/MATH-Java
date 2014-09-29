@@ -14,11 +14,15 @@ import java.net.URL;
 import javax.swing.ImageIcon;
 
 import com.rolandoislas.math.data.Constants;
+import com.rolandoislas.math.gui.Annuity;
+import com.rolandoislas.math.gui.AnnuityPayout;
 import com.rolandoislas.math.gui.ExponentialGrowth;
 import com.rolandoislas.math.gui.InterestCompound;
+import com.rolandoislas.math.gui.InterestCompoundContinuous;
 import com.rolandoislas.math.gui.InterestSimple;
 import com.rolandoislas.math.gui.LinearGrowth;
 import com.rolandoislas.math.gui.List;
+import com.rolandoislas.math.gui.Loan;
 import com.rolandoislas.math.gui.Logarithm;
 import com.rolandoislas.math.gui.asset.button.ButtomHome;
 import com.rolandoislas.math.util.state.StateBasedApplication;
@@ -77,6 +81,10 @@ public class Main extends StateBasedApplication {
 		addState(new ExponentialGrowth());
 		addState(new Logarithm());
 		addState(new InterestSimple());
-		addState(new InterestCompound());
+		addState(new InterestCompound()); // 5
+		addState(new InterestCompoundContinuous());
+		addState(new Annuity());
+		addState(new AnnuityPayout());
+		addState(new Loan());
 	}
 }

@@ -32,6 +32,7 @@ public class SolveVariable extends JPanel {
 	private Map<Integer, JLabel> mapLabel = new HashMap<Integer, JLabel>();
 	private Map<Integer, JTextField> mapTextField = new HashMap<Integer, JTextField>();
 	private SpringLayout springLayout;
+	private JLabel lblTitle;
 
 	/**
 	 * @param displayName 
@@ -54,8 +55,7 @@ public class SolveVariable extends JPanel {
 		add(homeButton);
 		
 		// Title
-		JLabel lblTitle = new JLabel(title);
-		springLayout.putConstraint(SpringLayout.WEST, lblTitle, 401, SpringLayout.EAST, homeButton);
+		lblTitle = new JLabel(title);
 		springLayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, lblTitle, 0, SpringLayout.HORIZONTAL_CENTER, this);
 		lblTitle.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		add(lblTitle);
@@ -186,5 +186,18 @@ public class SolveVariable extends JPanel {
 	 */
 	public JTextField getField(int key) {
 		return mapTextField.get(key);
+	}
+
+	/**
+	 * @param class1
+	 * @return
+	 */
+	public boolean hasFieldsPopulated(int[] fields) {
+		for(int i = 0; i < fields.length; i++) {
+			if(isFieldNull(fields[i])) {
+				return false;
+			}
+		}
+		return true;
 	}
 }
