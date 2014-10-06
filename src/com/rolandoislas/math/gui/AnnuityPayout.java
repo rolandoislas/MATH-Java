@@ -93,7 +93,7 @@ public class AnnuityPayout implements ApplicationState {
 	 */
 	private void calculatePrincipal() {
 		if(panel.hasFieldsPopulated(new int[] {1, 2, 3, 4})) {
-			double numerator = panel.getFieldText(2) * (1 - Math.pow(1 + (panel.getFieldText(2) / panel.getFieldText(4)), -panel.getFieldText(3) * panel.getFieldText(4)));
+			double numerator = panel.getFieldText(1) * (1 - Math.pow(1 + (panel.getFieldText(2) / panel.getFieldText(4)), -panel.getFieldText(3) * panel.getFieldText(4)));
 			double denominator = panel.getFieldText(2) / panel.getFieldText(4);
 			double principal = numerator / denominator;
 			panel.setFieldText(5, (float)principal);
