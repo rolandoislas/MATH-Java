@@ -12,6 +12,7 @@ import java.awt.FontMetrics;
 
 import com.rolandoislas.math.gui.asset.button.ButtomHome;
 import com.rolandoislas.math.util.Field;
+import com.rolandoislas.math.util.OS;
 
 import java.awt.Color;
 import java.util.HashMap;
@@ -60,6 +61,8 @@ public class SolveVariable extends JPanel {
 		lblTitle.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		add(lblTitle);
 		
+		new OS();
+		
 		// Add input components to map relative to initial
 		for(int i = 0; i < inputFields; i++) {
 			JLabel label = new JLabel();
@@ -74,7 +77,7 @@ public class SolveVariable extends JPanel {
 			if(i == 0) {
 				springLayout.putConstraint(SpringLayout.NORTH, textField, 58, SpringLayout.NORTH, this);
 				springLayout.putConstraint(SpringLayout.WEST, textField, 160, SpringLayout.WEST, this);
-				springLayout.putConstraint(SpringLayout.NORTH, label, 0, SpringLayout.NORTH, textField);
+				springLayout.putConstraint(SpringLayout.NORTH, label, OS.isMac() ? 5 : 0, SpringLayout.NORTH, textField);
 				springLayout.putConstraint(SpringLayout.EAST, label, -6, SpringLayout.WEST, textField);
 			} else {
 				springLayout.putConstraint(SpringLayout.NORTH, textField, 25 - topMargin, SpringLayout.NORTH, mapTextField.get(i - 1));
@@ -98,7 +101,7 @@ public class SolveVariable extends JPanel {
 			int firstFieldMargin = 0;
 			if(i == inputFields) {
 				firstItemMargin = 25;
-				firstFieldMargin = 0;
+				firstFieldMargin = OS.isMac() ? 5 : 0;
 			}
 			springLayout.putConstraint(SpringLayout.NORTH, textField, 25 + firstItemMargin + firstFieldMargin, SpringLayout.NORTH, mapTextField.get(i - 1));
 			springLayout.putConstraint(SpringLayout.WEST, textField, 0, SpringLayout.WEST, mapTextField.get(i - 1));
