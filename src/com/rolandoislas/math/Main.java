@@ -24,6 +24,7 @@ import com.rolandoislas.math.gui.LinearGrowth;
 import com.rolandoislas.math.gui.List;
 import com.rolandoislas.math.gui.Loan;
 import com.rolandoislas.math.gui.Logarithm;
+import com.rolandoislas.math.gui.Matrix;
 import com.rolandoislas.math.gui.asset.button.ButtomHome;
 import com.rolandoislas.math.util.state.StateBasedApplication;
 
@@ -86,5 +87,6 @@ public class Main extends StateBasedApplication {
 		addState(new Annuity());
 		addState(new AnnuityPayout());
 		addState(new Loan());
+		addState(new Matrix()); // 10
 	}
 }
