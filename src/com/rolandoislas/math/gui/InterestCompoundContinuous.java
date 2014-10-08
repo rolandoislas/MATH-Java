@@ -101,9 +101,9 @@ public class InterestCompoundContinuous implements ApplicationState {
 	 */
 	private void calculateYears() {
 		if(panel.hasFieldsPopulated(new int[] {0, 1, 3})) {
-			double rate = Math.log10(panel.getFieldText(3) / panel.getFieldText(0)) / (Math.log10(Math.exp(1)) * panel.getFieldText(1));
+			double years = Math.log10(panel.getFieldText(3) / panel.getFieldText(0)) / (Math.log10(Math.exp(1)) * panel.getFieldText(1));
 			caculateInterest(panel.getFieldText(3), panel.getFieldText(0));
-			panel.setFieldText(5, (float)rate);
+			panel.setFieldText(6, (float)years);
 		}
 	}
 
