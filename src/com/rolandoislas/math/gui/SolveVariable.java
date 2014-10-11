@@ -34,6 +34,8 @@ public class SolveVariable extends JPanel {
 	private Map<Integer, JTextField> mapTextField = new HashMap<Integer, JTextField>();
 	private SpringLayout springLayout;
 	private JLabel lblTitle;
+	private int inputFields;
+	private int outputFields;
 
 	/**
 	 * @param displayName 
@@ -41,6 +43,8 @@ public class SolveVariable extends JPanel {
 	 * @param outputFields
 	 */
 	public SolveVariable(String title, int inputFields, int outputFields) {
+		this.inputFields = inputFields;
+		this.outputFields = outputFields;
 		creatComponents(title, inputFields, outputFields);
 	}
 
@@ -202,5 +206,14 @@ public class SolveVariable extends JPanel {
 			}
 		}
 		return true;
+	}
+
+	/**
+	 * 
+	 */
+	public void setFieldsNull() {
+		for(int i = inputFields; i < inputFields + outputFields; i++) {
+			setFieldText(i, "null");
+		}
 	}
 }
