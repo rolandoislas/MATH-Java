@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 
+import com.rolandoislas.math.gui.panel.SolveVariable;
 import com.rolandoislas.math.util.state.ApplicationState;
 import com.rolandoislas.math.util.state.StateBasedApplication;
 

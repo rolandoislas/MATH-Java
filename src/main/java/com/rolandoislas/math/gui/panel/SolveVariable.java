@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.rolandoislas.math.gui;
+package com.rolandoislas.math.gui.panel;
 
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.FontMetrics;
 
-import com.rolandoislas.math.gui.asset.button.ButtomHome;
+import com.rolandoislas.math.gui.button.ButtomHome;
 import com.rolandoislas.math.util.Field;
 import com.rolandoislas.math.util.OS;
 

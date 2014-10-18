@@ -5,6 +5,8 @@ package com.rolandoislas.math.gui;
 
 import java.awt.Container;
 import javax.swing.JFrame;
+
+import com.rolandoislas.math.gui.panel.SolveVariable;
 import com.rolandoislas.math.util.state.ApplicationState;
 import com.rolandoislas.math.util.state.StateBasedApplication;
 

@@ -6,21 +6,28 @@ package com.rolandoislas.math.gui;
 import java.awt.Container;
 
 import javax.swing.JFrame;
-import javax.swing.event.CaretEvent;
-import javax.swing.event.CaretListener;
+import javax.swing.JPanel;
 
+import com.rolandoislas.math.gui.panel.SolveVariable;
 import com.rolandoislas.math.util.state.ApplicationState;
 import com.rolandoislas.math.util.state.StateBasedApplication;
+
+import javax.swing.event.CaretListener;
+import javax.swing.event.CaretEvent;
 
 /**
  * @author Rolando Islas
  *
  */
-public class InterestCompoundContinuous implements ApplicationState {
+public class InterestSimple extends JPanel implements ApplicationState {
 
-	private static final int ID = 6;
-	private static final String DISPLAY_NAME = "Compound Interest Continuous";
-	private static final int INPUT_FIELDS = 4;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private static final String DISPLAY_NAME = "Simple Interest";
+	private static final int ID = 4;
+	private static final int INPUT_FIELDS = 5;
 	private static final int OUTPUT_FIELDS = 5;
 	private SolveVariable panel;
 
@@ -60,50 +67,44 @@ public class InterestCompoundContinuous implements ApplicationState {
 	 * 
 	 */
 	private void doFieldComputations() {
-		setFieldsNull();
+		panel.setFieldsNull();
 		calculatePrincipal();
 		calculateRate();
-		calculateYears();
-		calculateFinalBalance();
+		calculateInterest();
+		calculateTime();
+		calculateEndAmount();
 	}
 
 	/**
 	 * 
 	 */
-	private void setFieldsNull() {
-		for(int i = INPUT_FIELDS; i < INPUT_FIELDS + OUTPUT_FIELDS; i++) {
-			panel.setFieldText(i, "null");
-		}
-	}
-
-	/**
-	 * 
-	 */
-	private void calculateFinalBalance() {
-		if(panel.hasFieldsPopulated(new int[] {0, 1, 2})) {
-			double finalBalance = panel.getFieldText(0) * Math.exp(panel.getFieldText(1) * panel.getFieldText(2));
-			caculateInterest(finalBalance, panel.getFieldText(0));
-			panel.setFieldText(8, (float)finalBalance);
-		}
-	}
-
-	/**
-	 * @param principal 
-	 * @param finalBalance 
-	 * 
-	 */
-	private void caculateInterest(double finalBalance, double principal) {
-		panel.setFieldText(7, (float)(finalBalance - principal));
-	}
-
-	/**
-	 * 
-	 */
-	private void calculateYears() {
+	private void calculateEndAmount() {
+		// A = P(1 + rt)
 		if(panel.hasFieldsPopulated(new int[] {0, 1, 3})) {
-			double years = Math.log10(panel.getFieldText(3) / panel.getFieldText(0)) / (Math.log10(Math.exp(1)) * panel.getFieldText(1));
-			caculateInterest(panel.getFieldText(3), panel.getFieldText(0));
-			panel.setFieldText(6, (float)years);
+			double endAmount = panel.getFieldText(0) * (1 + panel.getFieldText(1) * panel.getFieldText(3));
+			panel.setFieldText(9, (float)endAmount);
+		}
+	}
+
+	/**
+	 * 
+	 */
+	private void calculateTime() {
+		// t = I / (Pr)
+		if(panel.hasFieldsPopulated(new int[] {0, 1, 2})) {
+			double time = panel.getFieldText(2) / (panel.getFieldText(0) * panel.getFieldText(1));
+			panel.setFieldText(8, (float)time);
+		}
+	}
+
+	/**
+	 * 
+	 */
+	private void calculateInterest() {
+		// I = Prt
+		if(panel.hasFieldsPopulated(new int[] {0, 1, 3})) {
+			double interest = panel.getFieldText(0) * panel.getFieldText(1) * panel.getFieldText(3);
+			panel.setFieldText(7, (float)interest);
 		}
 	}
 
@@ -111,10 +112,10 @@ public class InterestCompoundContinuous implements ApplicationState {
 	 * 
 	 */
 	private void calculateRate() {
+		// r = I / (Pt)
 		if(panel.hasFieldsPopulated(new int[] {0, 2, 3})) {
-			double rate = Math.log10(panel.getFieldText(3) / panel.getFieldText(0)) / (Math.log10(Math.exp(1)) * panel.getFieldText(2));
-			caculateInterest(panel.getFieldText(3), panel.getFieldText(0));
-			panel.setFieldText(5, (float)rate);
+			double rate = panel.getFieldText(2) / (panel.getFieldText(0) * panel.getFieldText(3));
+			panel.setFieldText(6, (float)rate);
 		}
 	}
 
@@ -122,12 +123,11 @@ public class InterestCompoundContinuous implements ApplicationState {
 	 * 
 	 */
 	private void calculatePrincipal() {
+		// P = I / (rt)
 		if(panel.hasFieldsPopulated(new int[] {1, 2, 3})) {
-			double principal = panel.getFieldText(3) / Math.exp(panel.getFieldText(1) * panel.getFieldText(2));
-			caculateInterest(panel.getFieldText(3), principal);
-			panel.setFieldText(4, (float)principal);
+			double principal = panel.getFieldText(2) / (panel.getFieldText(1) * panel.getFieldText(3));
+			panel.setFieldText(5, (float)principal);
 		}
-		
 	}
 
 	/**
@@ -137,14 +137,15 @@ public class InterestCompoundContinuous implements ApplicationState {
 		// input
 		panel.setLabelText(0, "Principal");
 		panel.setLabelText(1, "Rate");
-		panel.setLabelText(2, "Years");
-		panel.setLabelText(3, "Final Balance");
+		panel.setLabelText(2, "Interest");
+		panel.setLabelText(3, "Time");
+		panel.setLabelText(4, "End Amount");
 		// output
-		panel.setLabelText(4, "Principal");
-		panel.setLabelText(5, "Rate");
-		panel.setLabelText(6, "Years");
+		panel.setLabelText(5, "Principal");
+		panel.setLabelText(6, "Rate");
 		panel.setLabelText(7, "Interest");
-		panel.setLabelText(8, "Final Balance");
+		panel.setLabelText(8, "Time");
+		panel.setLabelText(9, "End Amount");
 	}
 
 	/* (non-Javadoc)
@@ -162,5 +163,4 @@ public class InterestCompoundContinuous implements ApplicationState {
 	public String getListDisplayName() {
 		return DISPLAY_NAME;
 	}
-
 }

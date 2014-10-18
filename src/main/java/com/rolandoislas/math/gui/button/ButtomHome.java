@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.rolandoislas.math.gui.asset.button;
+package com.rolandoislas.math.gui.button;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
