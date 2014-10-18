@@ -37,8 +37,7 @@ public class Main extends StateBasedApplication {
 	private static final String APP_NAME = "MATH";
 	private static final int WIDTH = 1148;
 	private static final int HEIGHT = 720;
-	private int screenWidth;
-	private int screenHeight;
+
 
 	/**
 	 * 
@@ -46,8 +45,8 @@ public class Main extends StateBasedApplication {
 	public Main() {
 		super(APP_NAME + " " + Constants.VERSION);
 		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-		screenWidth = gd.getDisplayMode().getWidth();
-		screenHeight = gd.getDisplayMode().getHeight();
+		int screenWidth = gd.getDisplayMode().getWidth();
+		int screenHeight = gd.getDisplayMode().getHeight();
 		setPosition(screenWidth / 2 - WIDTH / 2, screenHeight / 2 - HEIGHT / 2);
 		setWidth(WIDTH);
 		setHeight(HEIGHT);
@@ -59,6 +58,7 @@ public class Main extends StateBasedApplication {
 
 	/**
 	 * @param args
+     * No arguments expected
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
