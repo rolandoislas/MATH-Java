@@ -1,5 +1,5 @@
 /**
- * 
+ * Creates a panel designed to allow for input output of basic algebraic equations.
  */
 package com.rolandoislas.math.gui.panel;
 
@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.FontMetrics;
 
-import com.rolandoislas.math.gui.button.ButtomHome;
+import com.rolandoislas.math.gui.button.ButtonHome;
 import com.rolandoislas.math.util.Field;
 import com.rolandoislas.math.util.OS;
 
@@ -26,41 +26,42 @@ import javax.swing.JTextField;
  */
 public class SolveVariable extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Map<Integer, JLabel> mapLabel = new HashMap<Integer, JLabel>();
 	private Map<Integer, JTextField> mapTextField = new HashMap<Integer, JTextField>();
 	private SpringLayout springLayout;
-	private JLabel lblTitle;
 	private int inputFields;
 	private int outputFields;
 
 	/**
-	 * @param displayName 
-	 * @param inputFields
-	 * @param outputFields
+	 * @param title title shown at top of panel
+	 * @param inputFields number of input fields to generate
+	 * @param outputFields number rof output fields to generate
 	 */
 	public SolveVariable(String title, int inputFields, int outputFields) {
 		this.inputFields = inputFields;
 		this.outputFields = outputFields;
-		creatComponents(title, inputFields, outputFields);
+		createComponents(title, inputFields, outputFields);
 	}
 
 	/**
-	 * @param inputFields
-	 * @param outputFields
+     * Creates the input an output fields.
+     * <p>
+     * Fields are saved to maps.
+     *
+     * @param title title to give label
+	 * @param inputFields number of input fields to generate
+	 * @param outputFields number of output fields to generate
 	 */
-	private void creatComponents(String title, int inputFields, int outputFields) {
+	private void createComponents(String title, int inputFields, int outputFields) {
 		springLayout = new SpringLayout();
 		setLayout(springLayout);
 		
-		ButtomHome homeButton = new ButtomHome();
+		ButtonHome homeButton = new ButtonHome();
 		add(homeButton);
 		
 		// Title
-		lblTitle = new JLabel(title);
+		JLabel lblTitle = new JLabel(title);
 		springLayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, lblTitle, 0, SpringLayout.HORIZONTAL_CENTER, this);
 		lblTitle.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		add(lblTitle);
@@ -85,9 +86,9 @@ public class SolveVariable extends JPanel {
 				springLayout.putConstraint(SpringLayout.EAST, label, -6, SpringLayout.WEST, textField);
 			} else {
 				springLayout.putConstraint(SpringLayout.NORTH, textField, 25 - topMargin, SpringLayout.NORTH, mapTextField.get(i - 1));
-				springLayout.putConstraint(SpringLayout.WEST, textField, 0 + leftMargin, SpringLayout.WEST, mapTextField.get(i - 1));
+				springLayout.putConstraint(SpringLayout.WEST, textField, leftMargin, SpringLayout.WEST, mapTextField.get(i - 1));
 				springLayout.putConstraint(SpringLayout.NORTH, label, 25 - topMargin, SpringLayout.NORTH, mapLabel.get(i - 1));
-				springLayout.putConstraint(SpringLayout.WEST, label, 0 + leftMargin, SpringLayout.WEST, mapLabel.get(i - 1));
+				springLayout.putConstraint(SpringLayout.WEST, label, leftMargin, SpringLayout.WEST, mapLabel.get(i - 1));
 			}
 			
 			textField.setColumns(10);
@@ -136,8 +137,10 @@ public class SolveVariable extends JPanel {
 	}
 
 	/**
-	 * @param key
-	 * @param name
+     * Sets the text of a label.
+     *
+	 * @param key map index
+	 * @param name text to apply to label
 	 */
 	public void setLabelText(int key, String name) {
 		String text = name + ":";
@@ -149,46 +152,59 @@ public class SolveVariable extends JPanel {
 	}
 
 	/**
-	 * @param i
-	 * @return
+     * Returns the value of a field as a double.
+     *
+	 * @param key map index
+	 * @return value of the field as a double
 	 */
 	public double getFieldText(int key) {
 		return Field.gd(mapTextField.get(key));
 	}
 
 	/**
-	 * @param i
-	 * @return
+     * Return true if field is null.
+     *
+	 * @param key map index
+	 * @return true if field is null
 	 */
 	public boolean isFieldNull(int key) {
 		return Field.isFieldNull(mapTextField.get(key));
 	}
 
 	/**
-	 * @param text
+     * Sets the text of a field.
+     *
+	 * @param key map index
+     * @param text text to set for field
 	 */
 	public void setFieldText(int key, String text) {
 		mapTextField.get(key).setText(text);
 	}
 
 	/**
-	 * @param key
-	 * @param principal
+     * Convince method. Sets field text from a double value.
+     *
+	 * @param key map index
+	 * @param number value to set field text
 	 */
 	public void setFieldText(int key, double number) {
 		setFieldText(key, number + "");
 	}
 
 	/**
-	 * @param i
-	 * @return
+     * Checks if field is populated.
+     *
+	 * @param key map index
+	 * @return true if field is not null
 	 */
 	public boolean isFieldPopulated(int key) {
 		return !isFieldNull(key);
 	}
 
 	/**
-	 * @param key
+     * Returns the field from a map.
+     *
+	 * @param key map index
 	 * @return JTextField
 	 */
 	public JTextField getField(int key) {
@@ -196,8 +212,10 @@ public class SolveVariable extends JPanel {
 	}
 
 	/**
-	 * @param class1
-	 * @return
+     * Checks if the given fields are populated.
+     *
+	 * @param fields integer array of fields to be checks
+	 * @return true if all fields provided are populated
 	 */
 	public boolean hasFieldsPopulated(int[] fields) {
 		for(int i = 0; i < fields.length; i++) {
@@ -209,7 +227,7 @@ public class SolveVariable extends JPanel {
 	}
 
 	/**
-	 * 
+	 * Sets all field values to "null"
 	 */
 	public void setFieldsNull() {
 		for(int i = inputFields; i < inputFields + outputFields; i++) {

@@ -25,7 +25,7 @@ import com.rolandoislas.math.gui.List;
 import com.rolandoislas.math.gui.Loan;
 import com.rolandoislas.math.gui.Logarithm;
 import com.rolandoislas.math.gui.Matrix;
-import com.rolandoislas.math.gui.button.ButtomHome;
+import com.rolandoislas.math.gui.button.ButtonHome;
 import com.rolandoislas.math.util.state.StateBasedApplication;
 
 /**
@@ -53,7 +53,7 @@ public class Main extends StateBasedApplication {
 		initialize();
 		addStates();
 		setState(0);
-		ButtomHome.setSba(this);
+		ButtonHome.setSba(this);
 	}
 
 	/**

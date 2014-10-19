@@ -38,7 +38,7 @@ public class LinearGrowth implements ApplicationState {
 	 */
 	@Override
 	public Container initialize(StateBasedApplication sba, JFrame frame) {
-		panel = new SolveVariable(DISPLAY_NAME, INPUT_FIELDS, OUTPUT_FIELDS);;
+		panel = new SolveVariable(DISPLAY_NAME, INPUT_FIELDS, OUTPUT_FIELDS);
 		setFieldNames();
 		setFieldEvents();
 		return panel;

@@ -14,7 +14,7 @@ import com.rolandoislas.math.util.state.StateBasedApplication;
  * @author Rolando Islas
  *
  */
-public class ButtomHome extends JButton {
+public class ButtonHome extends JButton {
 
 	/**
 	 * 
@@ -22,7 +22,7 @@ public class ButtomHome extends JButton {
 	private static final long serialVersionUID = 1L;
 	protected static StateBasedApplication sba;
 	
-	public ButtomHome() {
+	public ButtonHome() {
 		this.setText("Home");
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -36,7 +36,7 @@ public class ButtomHome extends JButton {
 	 * 
 	 */
 	public static void setSba(StateBasedApplication sba) {
-		ButtomHome.sba = sba;
+		ButtonHome.sba = sba;
 	}
 
 }

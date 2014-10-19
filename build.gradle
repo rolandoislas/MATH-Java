@@ -2,7 +2,9 @@ apply plugin: 'java'
 apply plugin:'application'
 apply plugin: 'eclipse'
 
+//noinspection GroovyUnusedAssignment
 sourceCompatibility = 1.8
+//noinspection GroovyUnusedAssignment
 targetCompatibility = 1.8
 mainClassName = "com.rolandoislas.math.Main"
 jar {
