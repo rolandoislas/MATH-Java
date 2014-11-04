@@ -25,7 +25,6 @@ public class MeanMedianModeQuartile implements ApplicationState {
     private static final int OUTPUT_FIELDS = 9;
     private int ID = 11;
     private ProcessList panel;
-	private List<String> stringList;
 	private List<Double> list = new ArrayList<Double>();
 	private List<Integer> middleNumbers = new ArrayList<Integer>();
 
@@ -52,8 +51,8 @@ public class MeanMedianModeQuartile implements ApplicationState {
 	}
 
 	protected void doFieldComputations() {
-		if(getList()) {
-			organizeList();
+        list = panel.getList();
+		if(list != null) {
 			panel.setFieldsNull();
 			displayOrderedLists();
 			calculateHigh();
@@ -158,29 +157,6 @@ public class MeanMedianModeQuartile implements ApplicationState {
 		reversedList.addAll(list);
 		Collections.reverse(reversedList);
 		panel.setFieldText(2, reversedList.toString());
-	}
-
-	private void organizeList() {
-		list.clear();
-		for(String string : stringList) {
-			list.add(Double.parseDouble(string));
-		}
-		Collections.sort(list);
-	}
-
-	private boolean getList() {
-		String rawList = panel.getField(0).getText();
-		stringList = Arrays.asList(rawList.split("\\s*,\\s*"));
-		boolean error = false;
-		for(int i = 0; i < stringList.size(); i++) {
-			try {
-				Double.parseDouble(stringList.get(i));
-			} catch (NumberFormatException e) {
-				error = true;
-				break;
-			}
-		}
-		return !error;
 	}
 
 	private void setFieldNames() {

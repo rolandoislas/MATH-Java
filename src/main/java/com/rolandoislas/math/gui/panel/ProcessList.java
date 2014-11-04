@@ -2,8 +2,7 @@ package com.rolandoislas.math.gui.panel;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import javax.swing.*;
 
@@ -89,4 +88,23 @@ public class ProcessList extends JPanel {
 	public void setFieldText(int key, Double value) {
 		setFieldText(key, value + "");
 	}
+
+    public List<Double> getList() {
+        String rawList = getField(0).getText();
+        List<String> stringList = Arrays.asList(rawList.split("\\s*,\\s*"));
+        for (String string : stringList) {
+            try {
+                Double.parseDouble(string);
+            } catch (NumberFormatException e) {
+                return null;
+            }
+        }
+        List<Double> list = new ArrayList<Double>();
+        for(String string : stringList) {
+            list.add(Double.parseDouble(string));
+        }
+        Collections.sort(list);
+        return list;
+    }
+
 }
