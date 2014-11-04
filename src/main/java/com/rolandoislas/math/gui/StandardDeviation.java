@@ -22,6 +22,7 @@ public class StandardDeviation implements ApplicationState {
     private ProcessList panel;
     private List<Double> list;
     private double average;
+    private int INPUT_FIELDS = 1;
 
     @Override
     public int getID() {
@@ -30,18 +31,20 @@ public class StandardDeviation implements ApplicationState {
 
     @Override
     public Container initialize(StateBasedApplication sba, JFrame frame) {
-        panel = new ProcessList(DISPLAY_NAME, OUTPUT_FIELDS);
+        panel = new ProcessList(DISPLAY_NAME, INPUT_FIELDS, OUTPUT_FIELDS);
         setFieldNames();
         setFieldEvents();
         return panel;
     }
 
     private void setFieldEvents() {
-        panel.getField(0).addCaretListener(new CaretListener() {
-            public void caretUpdate(CaretEvent e) {
-                doFieldComputations();
-            }
-        });
+        for(int i = 0; i < INPUT_FIELDS + 1; i++) {
+            panel.getField(i).addCaretListener(new CaretListener() {
+                public void caretUpdate(CaretEvent e) {
+                    doFieldComputations();
+                }
+            });
+        }
     }
 
     private void doFieldComputations() {
@@ -59,19 +62,24 @@ public class StandardDeviation implements ApplicationState {
         }
         total /= list.size();
         total = Math.sqrt(total);
-        panel.setFieldText(1, total);
+        panel.setFieldText(2, total);
     }
 
     private void calculateMean() {
-        double total = 0;
-        for(double number : list) {
-            total += number;
+        if(!panel.getField(1).getText().equals("")) {
+            average = Double.parseDouble(panel.getField(1).getText());
+        } else {
+            double total = 0;
+            for (double number : list) {
+                total += number;
+            }
+            average = total / list.size();
         }
-        average = total / list.size();
     }
 
     private void setFieldNames() {
-        panel.setLabelText(0, "Standard Deviation");
+        panel.setLabelText(0, "Mean");
+        panel.setLabelText(1, "Standard Deviation");
     }
 
     @Override

@@ -14,15 +14,21 @@ import com.rolandoislas.math.gui.button.ButtonHome;
 public class ProcessList extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private final int outputFields;
+    private int inputFields;
+    private final int outputFields;
     private final String title;
 	private Map<Integer, JLabel> mapLabel = new HashMap<Integer, JLabel>();
 	private Map<Integer, JTextField> mapTextField = new HashMap<Integer, JTextField>();
 
-    public ProcessList(String title, int outputFields) {
+    public ProcessList(String title, int inputFields, int outputFields) {
         this.title = title;
+        this.inputFields = inputFields;
         this.outputFields = outputFields;
         createComponents();
+    }
+
+    public ProcessList(String title, int outputFields) {
+        this(title, 0, outputFields);
     }
 
     private void createComponents() {
@@ -45,9 +51,24 @@ public class ProcessList extends JPanel {
         inputField.setColumns(10);
         mapTextField.put(0, inputField);
         add(mapTextField.get(0));
+
+        for(int i = 0; i < inputFields; i++) {
+            JLabel label = new JLabel();
+            springLayout.putConstraint(SpringLayout.NORTH, label, 10, SpringLayout.SOUTH, (i==0) ? inputField : mapLabel.get(i - 1));
+            springLayout.putConstraint(SpringLayout.WEST, label, 0, SpringLayout.WEST, inputField);
+            mapLabel.put(i, label);
+            add(mapLabel.get(i));
+
+            JTextField textField = new JTextField();
+            springLayout.putConstraint(SpringLayout.WEST, textField, 6, SpringLayout.EAST, label);
+            springLayout.putConstraint(SpringLayout.SOUTH, textField, 3, SpringLayout.SOUTH, label);
+            textField.setColumns(10);
+            mapTextField.put(i + 1, textField);
+            add(mapTextField.get(i + 1));
+        }
         
-        for(int i = 0; i < outputFields; i++) {
-	        JLabel label = new JLabel("LABEL");
+        for(int i = inputFields; i < inputFields + outputFields; i++) {
+	        JLabel label = new JLabel();
 	        springLayout.putConstraint(SpringLayout.NORTH, label, (i==0) ? 54 : 10, SpringLayout.SOUTH, (i==0) ? inputField : mapLabel.get(i - 1));
 	        springLayout.putConstraint(SpringLayout.WEST, label, 0, SpringLayout.WEST, inputField);
 	        mapLabel.put(i, label);
@@ -61,7 +82,6 @@ public class ProcessList extends JPanel {
 			textField.setBackground(new Color(238, 238, 238));
 			textField.setEditable(false);
 			textField.setBorder(null);
-			textField.setText("null");
 	        mapTextField.put(i + 1, textField);
 	        add(mapTextField.get(i + 1));
         }
