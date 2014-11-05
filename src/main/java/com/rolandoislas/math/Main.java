@@ -80,5 +80,6 @@ public class Main extends StateBasedApplication {
 		addState(new Matrix()); // 10
         addState(new MeanMedianModeQuartile());
         addState(new StandardDeviation());
+        addState(new NormalDistribution());
 	}
 }
