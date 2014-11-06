@@ -1,6 +1,7 @@
 apply plugin: 'java'
 apply plugin:'application'
 apply plugin: 'eclipse'
+apply plugin: 'idea'
 
 //noinspection GroovyUnusedAssignment
 sourceCompatibility = 1.8
