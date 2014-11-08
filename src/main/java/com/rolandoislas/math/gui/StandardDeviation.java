@@ -18,11 +18,10 @@ public class StandardDeviation implements ApplicationState {
 
     private static final int ID = 12;
     private static final String DISPLAY_NAME = "Standard Deviation";
-    private static final int OUTPUT_FIELDS = 1;
+    private static final int OUTPUT_FIELDS = 3;
     private ProcessList panel;
     private List<Double> list;
     private double average;
-    private int INPUT_FIELDS = 1;
 
     @Override
     public int getID() {
@@ -31,20 +30,14 @@ public class StandardDeviation implements ApplicationState {
 
     @Override
     public Container initialize(StateBasedApplication sba, JFrame frame) {
-        panel = new ProcessList(DISPLAY_NAME, INPUT_FIELDS, OUTPUT_FIELDS);
+        panel = new ProcessList(DISPLAY_NAME, OUTPUT_FIELDS);
         setFieldNames();
         setFieldEvents();
         return panel;
     }
 
     private void setFieldEvents() {
-        for(int i = 0; i < INPUT_FIELDS + 1; i++) {
-            panel.getField(i).addCaretListener(new CaretListener() {
-                public void caretUpdate(CaretEvent e) {
-                    doFieldComputations();
-                }
-            });
-        }
+        panel.getField(0).addCaretListener(e -> doFieldComputations());
     }
 
     private void doFieldComputations() {
@@ -60,26 +53,25 @@ public class StandardDeviation implements ApplicationState {
         for(double number : list) {
             total += Math.pow(number - average, 2);
         }
-        total /= list.size();
-        total = Math.sqrt(total);
-        panel.setFieldText(2, total);
+        double population = Math.sqrt(total / list.size());
+        double sample = Math.sqrt(total / (list.size() - 1));
+        panel.setFieldText(2, population);
+        panel.setFieldText(3, sample);
     }
 
     private void calculateMean() {
-        if(!panel.getField(1).getText().equals("")) {
-            average = Double.parseDouble(panel.getField(1).getText());
-        } else {
-            double total = 0;
-            for (double number : list) {
-                total += number;
-            }
-            average = total / list.size();
+        double total = 0;
+        for (double number : list) {
+            total += number;
         }
+        average = total / list.size();
+        panel.setFieldText(1, average);
     }
 
     private void setFieldNames() {
         panel.setLabelText(0, "Mean");
-        panel.setLabelText(1, "Standard Deviation");
+        panel.setLabelText(1, "Standard Deviation (Population)");
+        panel.setLabelText(2, "Standard Deviation (Sample)");
     }
 
     @Override
